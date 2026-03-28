@@ -20,9 +20,7 @@ export default function NotFound() {
 
         // Dots animation
         const dotsInterval = setInterval(() => {
-            setDots((prev) =>
-                prev.length >= 3 ? "." : prev + "."
-            );
+            setDots((prev) => (prev.length >= 3 ? "." : prev + "."));
         }, 500);
 
         return () => {
@@ -59,18 +57,24 @@ export default function NotFound() {
             {/* Glow orbs animados */}
             <div
                 className="absolute w-96 h-96 rounded-full bg-emerald-500/8 blur-3xl pointer-events-none"
-                style={{ animation: "orbFloat1 8s ease-in-out infinite" }}
+                style={{
+                    animation: "orbFloat1 8s ease-in-out infinite",
+                }}
             />
             <div
                 className="absolute w-64 h-64 rounded-full bg-red-500/5 blur-3xl pointer-events-none"
-                style={{ animation: "orbFloat2 12s ease-in-out infinite" }}
+                style={{
+                    animation: "orbFloat2 12s ease-in-out infinite",
+                }}
             />
 
             {/* Corner TL */}
             <div className="absolute top-6 left-6 flex items-center gap-2">
                 <div
                     className="w-2 h-2 rounded-full bg-red-400"
-                    style={{ animation: "pulse 1s ease-in-out infinite" }}
+                    style={{
+                        animation: "pulse 1s ease-in-out infinite",
+                    }}
                 />
                 <span className="text-xs text-zinc-600 font-mono tracking-widest uppercase">
                     ERROR / 404
@@ -84,8 +88,12 @@ export default function NotFound() {
 
             {/* Corner BL */}
             <div
+                suppressHydrationWarning
                 className="absolute bottom-6 left-6 text-xs text-zinc-700 font-mono"
-                style={{ opacity: mounted ? 1 : 0, transition: "opacity 1s" }}
+                style={{
+                    opacity: mounted ? 1 : 0,
+                    transition: "opacity 1s",
+                }}
             >
                 Buscando ruta{dots}
             </div>
@@ -94,28 +102,41 @@ export default function NotFound() {
             <div className="absolute bottom-6 right-6 flex items-center gap-1.5">
                 <div
                     className="w-1.5 h-1.5 rounded-full bg-red-500"
-                    style={{ animation: "pulse 0.8s ease-in-out infinite" }}
+                    style={{
+                        animation: "pulse 0.8s ease-in-out infinite",
+                    }}
                 />
-                <span className="text-xs text-zinc-700 font-mono">LOST</span>
+                <span className="text-xs text-zinc-700 font-mono">
+                    LOST
+                </span>
             </div>
 
             {/* Main content */}
             <div
+                suppressHydrationWarning
                 className="relative z-20 flex flex-col items-center text-center px-6"
                 style={{
                     opacity: mounted ? 1 : 0,
-                    transform: mounted ? "translateY(0)" : "translateY(20px)",
-                    transition: "opacity 0.8s ease, transform 0.8s ease",
+                    transform: mounted
+                        ? "translateY(0)"
+                        : "translateY(20px)",
+                    transition:
+                        "opacity 0.8s ease, transform 0.8s ease",
                 }}
             >
                 {/* 404 glitch */}
-                <div className="relative mb-6 select-none">
+                <div
+                    suppressHydrationWarning
+                    className="relative mb-6 select-none"
+                >
                     <span
                         className="text-[9rem] font-black leading-none text-white"
                         style={{
-                            fontFamily: "'DM Serif Display', Georgia, serif",
+                            fontFamily:
+                                "'DM Serif Display', Georgia, serif",
                             letterSpacing: "-4px",
-                            animation: "fadeInScale 0.8s ease forwards",
+                            animation:
+                                "fadeInScale 0.8s ease forwards",
                         }}
                     >
                         404
@@ -127,7 +148,8 @@ export default function NotFound() {
                             <span
                                 className="absolute inset-0 text-[9rem] font-black leading-none text-emerald-400"
                                 style={{
-                                    fontFamily: "'DM Serif Display', Georgia, serif",
+                                    fontFamily:
+                                        "'DM Serif Display', Georgia, serif",
                                     letterSpacing: "-4px",
                                     clipPath: "inset(20% 0 60% 0)",
                                     transform: "translate(-4px, 0)",
@@ -139,7 +161,8 @@ export default function NotFound() {
                             <span
                                 className="absolute inset-0 text-[9rem] font-black leading-none text-red-400"
                                 style={{
-                                    fontFamily: "'DM Serif Display', Georgia, serif",
+                                    fontFamily:
+                                        "'DM Serif Display', Georgia, serif",
                                     letterSpacing: "-4px",
                                     clipPath: "inset(60% 0 10% 0)",
                                     transform: "translate(4px, 0)",
@@ -161,7 +184,10 @@ export default function NotFound() {
                 >
                     <div
                         className="w-1.5 h-1.5 rounded-full bg-red-400"
-                        style={{ animation: "pulse 1s ease-in-out infinite" }}
+                        style={{
+                            animation:
+                                "pulse 1s ease-in-out infinite",
+                        }}
                     />
                     <span className="text-xs font-mono text-zinc-400 tracking-widest uppercase">
                         Página no encontrada
@@ -171,7 +197,9 @@ export default function NotFound() {
                 {/* Mensaje */}
                 <p
                     className="text-zinc-500 text-sm font-mono max-w-sm leading-relaxed mb-10"
-                    style={{ animation: "fadeInUp 0.8s ease 0.4s both" }}
+                    style={{
+                        animation: "fadeInUp 0.8s ease 0.4s both",
+                    }}
                 >
                     La ruta que buscas no existe o fue movida.
                     <br />
@@ -179,7 +207,11 @@ export default function NotFound() {
                 </p>
 
                 {/* CTA */}
-                <div style={{ animation: "fadeInUp 0.8s ease 0.6s both" }}>
+                <div
+                    style={{
+                        animation: "fadeInUp 0.8s ease 0.6s both",
+                    }}
+                >
                     <Link href="/">
                         <Button
                             className="h-11 px-8 bg-emerald-500 hover:bg-emerald-400 text-black font-bold
@@ -193,58 +225,109 @@ export default function NotFound() {
 
                 {/* Código de error decorativo */}
                 <div
+                    suppressHydrationWarning
                     className="mt-12 font-mono text-xs text-zinc-800 text-left max-w-xs"
-                    style={{ animation: "fadeInUp 0.8s ease 0.8s both" }}
+                    style={{
+                        animation: "fadeInUp 0.8s ease 0.8s both",
+                    }}
                 >
                     <span className="text-zinc-700">{">"}</span>{" "}
                     <span className="text-red-900">ERROR</span>{" "}
-                    <span className="text-zinc-800">route not found</span>
+                    <span className="text-zinc-800">
+                        route not found
+                    </span>
                     <br />
                     <span className="text-zinc-700">{">"}</span>{" "}
                     <span className="text-zinc-800">status: 404</span>
                     <br />
                     <span className="text-zinc-700">{">"}</span>{" "}
-                    <span className="text-emerald-900">suggestion: go home</span>
+                    <span className="text-emerald-900">
+                        suggestion: go home
+                    </span>
                     <span
                         className="inline-block w-2 h-3 bg-emerald-800 ml-1"
-                        style={{ animation: "blink 1s step-end infinite" }}
+                        style={{
+                            animation: "blink 1s step-end infinite",
+                        }}
                     />
                 </div>
             </div>
 
             <style jsx>{`
                 @keyframes gridMove {
-                    0% { background-position: 0 0; }
-                    100% { background-position: 40px 40px; }
+                    0% {
+                        background-position: 0 0;
+                    }
+                    100% {
+                        background-position: 40px 40px;
+                    }
                 }
                 @keyframes scanline {
-                    0% { background-position: 0 0; }
-                    100% { background-position: 0 100vh; }
+                    0% {
+                        background-position: 0 0;
+                    }
+                    100% {
+                        background-position: 0 100vh;
+                    }
                 }
                 @keyframes orbFloat1 {
-                    0%, 100% { transform: translate(-30%, -40%); }
-                    33% { transform: translate(-20%, -50%); }
-                    66% { transform: translate(-40%, -35%); }
+                    0%,
+                    100% {
+                        transform: translate(-30%, -40%);
+                    }
+                    33% {
+                        transform: translate(-20%, -50%);
+                    }
+                    66% {
+                        transform: translate(-40%, -35%);
+                    }
                 }
                 @keyframes orbFloat2 {
-                    0%, 100% { transform: translate(60%, 50%); }
-                    50% { transform: translate(70%, 40%); }
+                    0%,
+                    100% {
+                        transform: translate(60%, 50%);
+                    }
+                    50% {
+                        transform: translate(70%, 40%);
+                    }
                 }
                 @keyframes pulse {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.3; }
+                    0%,
+                    100% {
+                        opacity: 1;
+                    }
+                    50% {
+                        opacity: 0.3;
+                    }
                 }
                 @keyframes blink {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0; }
+                    0%,
+                    100% {
+                        opacity: 1;
+                    }
+                    50% {
+                        opacity: 0;
+                    }
                 }
                 @keyframes fadeInUp {
-                    from { opacity: 0; transform: translateY(16px); }
-                    to { opacity: 1; transform: translateY(0); }
+                    from {
+                        opacity: 0;
+                        transform: translateY(16px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
                 @keyframes fadeInScale {
-                    from { opacity: 0; transform: scale(0.9); }
-                    to { opacity: 1; transform: scale(1); }
+                    from {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
                 }
             `}</style>
         </div>

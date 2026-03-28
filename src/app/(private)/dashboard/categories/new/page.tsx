@@ -1,13 +1,10 @@
-import { getDashboardCategories } from "@/actions/dashboard/categories/categories";
 import Loading from "@/app/loading";
-import notFound from "@/app/not-found";
-import { DashbaordCategoriesGrid } from "@/components/private/dashboard/categories/DashbaordCategoriesGrid";
 import { DashboardHeader } from "@/components/private/dashboard/DashboardHeader";
 import {
     generateDescription,
     generateTitle,
 } from "@/lib/layout-metadata";
-import { Plus } from "lucide-react";
+import { ArrowLeft, } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -20,31 +17,24 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function DashboardCategoriesPage() {
-    const categories = await getDashboardCategories();
-    if (!categories) notFound();
-
+export default async function DashboardCategoriesNewPage() {
     return (
         <>
             <div className="dashboard-page-container">
                 <DashboardHeader
-                    title="Categorías"
-                    subtitle="Gestiona las categorías de la vitrina"
+                    title="Crear Nueva Categoría"
+                    subtitle="Agrega una nueva categoría para organizar tus productos"
                     action={{
-                        label: "Nueva Categoría",
-                        href: "/dashboard/categories/new",
-                        icon: Plus,
+                        label: "Volver",
+                        href: "/dashboard/categories",
+                        icon: ArrowLeft,
                     }}
                 />
                 <Suspense
                     fallback={
                         <Loading message="Cargando Categorías" />
                     }
-                >
-                    <DashbaordCategoriesGrid
-                        categories={categories.data ?? []}
-                    />
-                </Suspense>
+                ></Suspense>
             </div>
         </>
     );

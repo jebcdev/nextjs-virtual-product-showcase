@@ -57,7 +57,7 @@ export const DashboardCategoryCard = ({ category }: IProps) => {
                         variant="ghost"
                         className="h-8 w-8 bg-zinc-900/80 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-sm"
                     >
-                        <Link href={`/dashboard/categories/${id}`}>
+                        <Link href={`/dashboard/categories/${slug}`}>
                             <Eye className="w-3.5 h-3.5" />
                         </Link>
                     </Button>
@@ -69,7 +69,7 @@ export const DashboardCategoryCard = ({ category }: IProps) => {
                         className="h-8 w-8 bg-zinc-900/80 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-sm"
                     >
                         <Link
-                            href={`/dashboard/categories/${id}/edit`}
+                            href={`/dashboard/categories/${slug}/edit`}
                         >
                             <Pencil className="w-3.5 h-3.5" />
                         </Link>

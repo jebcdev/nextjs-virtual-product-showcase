@@ -64,7 +64,6 @@ export const DashboardGendersGrid = () => {
                             <DashboardGenderCard
                                 key={gender.id}
                                 gender={gender}
-                                editHref={`/dashboard/genders/${gender.id}/edit`}
                             />
                         ))}
                     </div>

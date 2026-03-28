@@ -8,13 +8,11 @@ import { Gender } from "@/generated/prisma/client";
 
 interface DashboardEntityCardProps {
     gender:Gender
-    editHref: string;
     className?: string;
 }
 
 export const DashboardGenderCard = ({
-    gender: { id, name, slug, isActive },
-    editHref,
+    gender: {  name, slug, isActive },
     className,
 }: DashboardEntityCardProps) => {
     return (
