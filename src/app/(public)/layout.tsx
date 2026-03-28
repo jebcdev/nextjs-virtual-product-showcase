@@ -8,9 +8,9 @@ import { getSessionDetails } from "@/actions/auth/session-details";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Inicio"),
+        title: generateTitle("Vitrina Virtual"),
         description: generateDescription(
-            "Explora el proyecto educativo de autenticación y autorización",
+            "Descubre nuestros productos y servicios en línea",
         ),
     };
 }
@@ -29,9 +29,7 @@ export default async function PublicLayout({
                 isAdmin={isAdmin}
                 currentUser={currentUser}
             />
-            <div className="p-1">
-                {children}
-            </div>
+            <div className="p-1">{children}</div>
         </main>
     );
 }

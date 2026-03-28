@@ -132,3 +132,7 @@
 button {
   @apply cursor-pointer;
 }
+
+.dashboard-page-container{
+  @apply pl-3 pt-2 pr-0.5 mb-2;
+}

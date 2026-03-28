@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { generateTitle, generateDescription } from "@/lib/layout-metadata";
+import {
+    generateTitle,
+    generateDescription,
+} from "@/lib/layout-metadata";
 import { getSessionDetails } from "@/actions/auth/session-details";
 import { notFound, redirect } from "next/navigation";
 import { DashboardSideBar } from "@/components/private/dashboard/DashboardSideBar";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Dashboard"),
+        title: generateTitle("Administración de Productos"),
         description: generateDescription(
-            "Panel de administración - solo para usuarios con rol admin",
+            "Panel de administración de productos - solo para administradores de la tienda",
         ),
     };
 }
@@ -25,9 +28,7 @@ export default async function DashboardLayout({
     return (
         <div className="flex min-h-screen bg-black antialiased">
             <DashboardSideBar />
-            <main className="flex-1 overflow-auto">
-                {children}
-            </main>
+            <main className="flex-1 overflow-auto">{children}</main>
         </div>
     );
 }

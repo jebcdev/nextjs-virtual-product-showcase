@@ -19,9 +19,9 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-    title: generateTitle("Sistema de Autenticación"),
+    title: generateTitle("Vitrina Virtual de Productos"),
     description: generateDescription(
-        "Proyecto educativo de autenticación y autorización con Next.js",
+        "Explora y descubre nuestro catálogo completo de productos en línea",
     ),
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    console.log(process.env.NEXT_PUBLIC_APP_NAME);
+    
     return (
         <html
             lang="en"

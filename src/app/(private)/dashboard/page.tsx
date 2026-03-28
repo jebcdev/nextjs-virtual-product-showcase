@@ -6,19 +6,25 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Dashboard"),
+        title: generateTitle("Administración"),
         description: generateDescription(
-            "Panel de administración - solo para usuarios con rol admin",
+            "Panel de administración - gestión de productos, inventario y pedidos",
         ),
     };
 }
 
 export default async function DashboardPage() {
     return (
-        <>
-            <main className="p-1">
-                <h1>Dashboard</h1>
-            </main>
-        </>
+        <div className="space-y-6 p-6">
+            <div>
+                <h1 className="text-3xl font-bold">
+                    Administración de Productos
+                </h1>
+                <p className="text-muted-foreground">
+                    Gestiona el catálogo de productos y pedidos
+                </p>
+            </div>
+            {/* Dashboard content */}
+        </div>
     );
 }

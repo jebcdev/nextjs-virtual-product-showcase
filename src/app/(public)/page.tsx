@@ -6,40 +6,49 @@ import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Inicio"),
+        title: generateTitle("Vitrina de Productos"),
         description:
-            "Sistema de autenticación y autorización construido con Next.js. Rutas protegidas, control de acceso por roles y sesión segura.",
+            "Explora nuestro catálogo de productos, descubre ofertas especiales y gestiona tu carrito de compras de forma segura.",
     };
 }
 
 const features = [
     {
-        tag: "Auth",
-        title: "Registro e inicio de sesión",
+        tag: "Catálogo",
+        title: "Amplio catálogo de productos",
         description:
-            "Flujo completo de identidad con validaciones en cliente y servidor, sesión persistente y redirección automática.",
+            "Explora miles de productos organizados por categorías con búsqueda avanzada, filtros y clasificación inteligente.",
     },
     {
-        tag: "RBAC",
-        title: "Control de acceso por roles",
+        tag: "Carrito",
+        title: "Carrito de compras inteligente",
         description:
-            "Dos roles — administrador y usuario — con experiencias distintas aplicadas estructuralmente desde el servidor.",
+            "Gestiona tu carrito de compras con vista previa de productos, cálculo automático de totales y persistencia de datos.",
     },
     {
-        tag: "Rutas",
-        title: "Protección por capas",
+        tag: "Seguridad",
+        title: "Compras seguras",
         description:
-            "Rutas públicas, privadas y restringidas organizadas mediante layouts anidados de Next.js App Router.",
+            "Autenticación robusta, encriptación de datos y control de acceso basado en roles para tu protección.",
     },
     {
-        tag: "Stack",
-        title: "Tecnología moderna",
+        tag: "Rendimiento",
+        title: "Experiencia ultra rápida",
         description:
-            "Next.js, Better Auth, Prisma, Tailwind CSS v4, shadcn/ui, React Hook Form y Zod trabajando juntos.",
+            "Server Components, optimización de imágenes y caché inteligente para carga instantánea de productos.",
     },
 ];
 
-const stack = ["Next.js", "Better Auth", "Prisma", "SQLite", "Tailwind v4", "shadcn/ui", "TypeScript", "Zod"];
+const stack = [
+    "Next.js 16",
+    "Better Auth",
+    "Prisma",
+    "Tailwind CSS v4",
+    "shadcn/ui",
+    "React Query",
+    "TypeScript",
+    "Zod",
+];
 
 export default function HomePage() {
     return (
@@ -67,7 +76,7 @@ export default function HomePage() {
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-zinc-800 bg-zinc-900/50">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             <span className="text-xs font-mono text-zinc-400 tracking-widest uppercase">
-                                Proyecto educativo · Open Source
+                                Vitrina virtual · Compra en línea
                             </span>
                         </div>
                     </div>
@@ -75,26 +84,33 @@ export default function HomePage() {
                     {/* Headline */}
                     <h1
                         className="text-center text-6xl md:text-8xl font-black tracking-tight leading-[0.9] mb-8"
-                        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                        style={{
+                            fontFamily:
+                                "'DM Serif Display', Georgia, serif",
+                        }}
                     >
-                        Auth.
+                        Tienda.
                         <br />
-                        <span className="text-emerald-400">Roles.</span>
+                        <span className="text-emerald-400">
+                            Productos.
+                        </span>
                         <br />
-                        <span className="text-zinc-600">Control.</span>
+                        <span className="text-zinc-600">Envíos.</span>
                     </h1>
 
                     <p className="text-center text-zinc-500 text-base font-mono max-w-lg mx-auto leading-relaxed mb-12">
-                        Un sistema de autenticación y autorización construido desde cero con
-                        Next.js. Rutas protegidas, sesión segura y control de acceso por roles —
-                        sin magia, sin abstracciones innecesarias.
+                        La mejor experiencia de compra en línea.
+                        Explora nuestro catálogo de productos,
+                        gestiona tu carrito y realiza compras seguras.
+                        Panel administrativo completo para gestionar
+                        tu tienda.
                     </p>
 
                     {/* CTAs */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <Link href="/register">
                             <Button className="h-11 px-8 bg-emerald-500 hover:bg-emerald-400 text-black font-bold font-mono text-sm tracking-widest uppercase rounded-sm transition-all hover:shadow-[0_0_20px_rgba(52,211,153,0.25)] active:scale-[0.99]">
-                                Crear cuenta →
+                                Compra ahora →
                             </Button>
                         </Link>
                         <Link href="/login">
@@ -102,7 +118,7 @@ export default function HomePage() {
                                 variant="outline"
                                 className="h-11 px-8 border-zinc-800 bg-transparent text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100 hover:border-zinc-700 font-mono text-sm tracking-widest uppercase rounded-sm transition-all"
                             >
-                                Iniciar sesión
+                                Mi cuenta
                             </Button>
                         </Link>
                         <Link href="/about">
@@ -110,7 +126,7 @@ export default function HomePage() {
                                 variant="ghost"
                                 className="h-11 px-6 text-zinc-600 hover:text-zinc-300 font-mono text-sm tracking-widest uppercase rounded-sm transition-all"
                             >
-                                Acerca del proyecto
+                                Sobre nosotros
                             </Button>
                         </Link>
                     </div>
@@ -146,7 +162,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-12">
                     <div className="h-px flex-1 bg-zinc-800" />
                     <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
-                        Qué incluye
+                        Características principales
                     </span>
                     <div className="h-px flex-1 bg-zinc-800" />
                 </div>
@@ -164,7 +180,10 @@ export default function HomePage() {
                             </div>
                             <h3
                                 className="text-base font-black text-white mb-2 group-hover:text-emerald-400 transition-colors"
-                                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                                style={{
+                                    fontFamily:
+                                        "'DM Serif Display', Georgia, serif",
+                                }}
                             >
                                 {f.title}
                             </h3>
@@ -185,19 +204,23 @@ export default function HomePage() {
             <section className="max-w-6xl mx-auto px-6 py-24 text-center">
                 <h2
                     className="text-4xl md:text-5xl font-black tracking-tight mb-4"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{
+                        fontFamily:
+                            "'DM Serif Display', Georgia, serif",
+                    }}
                 >
-                    Listo para explorar
+                    Comienza a comprar
                     <span className="text-emerald-400">.</span>
                 </h2>
                 <p className="text-zinc-500 font-mono text-sm max-w-md mx-auto mb-10 leading-relaxed">
-                    Regístrate para ver el sistema en acción o revisa el código para entender
-                    cómo está construido.
+                    Crea tu cuenta hoy y accede a miles de productos.
+                    Compra segura, envíos rápidos y excelente servicio
+                    al cliente.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                     <Link href="/register">
                         <Button className="h-11 px-8 bg-emerald-500 hover:bg-emerald-400 text-black font-bold font-mono text-sm tracking-widest uppercase rounded-sm transition-all hover:shadow-[0_0_20px_rgba(52,211,153,0.25)] active:scale-[0.99]">
-                            Empezar →
+                            Registrar →
                         </Button>
                     </Link>
                     <Link href="/about">
@@ -205,7 +228,7 @@ export default function HomePage() {
                             variant="outline"
                             className="h-11 px-8 border-zinc-800 bg-transparent text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100 hover:border-zinc-700 font-mono text-sm tracking-widest uppercase rounded-sm transition-all"
                         >
-                            Leer más
+                            Más información
                         </Button>
                     </Link>
                 </div>
@@ -217,14 +240,20 @@ export default function HomePage() {
             </div>
             <footer className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
                 <span className="text-xs font-mono text-zinc-700">
-                    JEBC-DeV · {new Date().getFullYear()}
+                    VirtualShop · {new Date().getFullYear()}
                 </span>
                 <div className="flex items-center gap-4">
-                    <Link href="/about" className="text-xs font-mono text-zinc-700 hover:text-zinc-400 transition-colors">
-                        Acerca de
+                    <Link
+                        href="/about"
+                        className="text-xs font-mono text-zinc-700 hover:text-zinc-400 transition-colors"
+                    >
+                        Catálogo
                     </Link>
-                    <Link href="/login" className="text-xs font-mono text-zinc-700 hover:text-zinc-400 transition-colors">
-                        Acceso
+                    <Link
+                        href="/login"
+                        className="text-xs font-mono text-zinc-700 hover:text-zinc-400 transition-colors"
+                    >
+                        Cuenta
                     </Link>
                 </div>
             </footer>

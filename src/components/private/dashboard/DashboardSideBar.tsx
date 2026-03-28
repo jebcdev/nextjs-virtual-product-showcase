@@ -4,14 +4,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
     LayoutDashboard,
-    Users,
-    BarChart3,
-    Settings,
-    FileText,
-    ShieldCheck,
-    LogOut,
+    Venus,
     ChevronLeft,
     Menu,
+    LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,29 +29,9 @@ const navItems = [
         icon: LayoutDashboard,
     },
     {
-        label: "Usuarios",
-        href: "/dashboard",
-        icon: Users,
-    },
-    {
-        label: "Analíticas",
-        href: "/dashboard",
-        icon: BarChart3,
-    },
-    {
-        label: "Reportes",
-        href: "/dashboard",
-        icon: FileText,
-    },
-    {
-        label: "Permisos",
-        href: "/dashboard",
-        icon: ShieldCheck,
-    },
-    {
-        label: "Configuración",
-        href: "/dashboard",
-        icon: Settings,
+        label: "Géneros",
+        href: "/dashboard/genders",
+        icon: Venus,
     },
 ];
 

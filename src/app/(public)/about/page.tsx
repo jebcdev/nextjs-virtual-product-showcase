@@ -6,9 +6,9 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Acerca de"),
+        title: generateTitle("Acerca de la Vitrina"),
         description: generateDescription(
-            "Arquitectura limpia de autenticación con Next.js, roles y rutas protegidas",
+            "Conoce nuestra plataforma de venta de productos en línea, tecnología y valores",
         ),
     };
 }
@@ -61,17 +61,20 @@ const stack = [
 ];
 
 const features = [
-    { icon: "▸", label: "Rutas públicas y privadas" },
-    { icon: "▸", label: "Control de acceso por roles (RBAC)" },
-    { icon: "▸", label: "Sesión persistente con cookies seguras" },
-    { icon: "▸", label: "Layouts anidados por sección" },
-    { icon: "▸", label: "Server Actions y Server Components" },
     {
         icon: "▸",
-        label: "Validaciones con Zod en cliente y servidor",
+        label: "Catálogo de productos con búsqueda y filtros",
     },
-    { icon: "▸", label: "Seed de usuarios iniciales vía API Route" },
-    { icon: "▸", label: "Metadata dinámica por página" },
+    { icon: "▸", label: "Carrito de compras persistente" },
+    { icon: "▸", label: "Gestión de inventario en tiempo real" },
+    { icon: "▸", label: "Sistema de pedidos y seguimiento" },
+    { icon: "▸", label: "Perfiles de usuario y favoritos" },
+    {
+        icon: "▸",
+        label: "Autenticación segura con mejora de contraseñas",
+    },
+    { icon: "▸", label: "Panel de administración de productos" },
+    { icon: "▸", label: "Optimización de imágenes y rendimiento" },
 ];
 
 const tagColors: Record<string, string> = {
@@ -94,7 +97,7 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-sm border border-zinc-800 bg-zinc-900/50">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-xs font-mono text-zinc-400 tracking-widest uppercase">
-                        Acerca del proyecto
+                        Acerca de la vitrina
                     </span>
                 </div>
 
@@ -105,15 +108,15 @@ export default function AboutPage() {
                             "'DM Serif Display', Georgia, serif",
                     }}
                 >
-                    JEBC
-                    <span className="text-emerald-400">-DeV</span>
+                    Virtual
+                    <span className="text-emerald-400">Shop</span>
                 </h1>
 
                 <p className="text-zinc-400 text-base leading-relaxed max-w-xl mt-4">
-                    Proyecto educativo enfocado en construir una base
-                    sólida para aplicaciones Next.js con autenticación
-                    real, rutas protegidas y control de acceso por
-                    roles — sin magia, sin abstracciones innecesarias.
+                    Plataforma moderna de comercio electrónico
+                    construida con Next.js, diseñada para ofrecer una
+                    experiencia de compra fluida, segura y escalable
+                    con gestión completa de productos e inventario.
                 </p>
 
                 <div className="flex items-center gap-4 mt-6">
@@ -125,11 +128,11 @@ export default function AboutPage() {
                     </div>
                     <div className="w-px h-3 bg-zinc-800" />
                     <span className="text-xs font-mono text-zinc-500">
-                        Educativo · Open Source
+                        Vitrina Virtual · Full-Stack
                     </span>
                     <div className="w-px h-3 bg-zinc-800" />
                     <span className="text-xs font-mono text-zinc-500">
-                        por JEBC
+                        Next.js 16 + Prisma
                     </span>
                 </div>
             </div>
@@ -146,21 +149,20 @@ export default function AboutPage() {
 
                 <div className="border border-zinc-800 rounded-sm p-6 bg-zinc-900/30">
                     <p className="text-zinc-300 text-sm leading-relaxed">
-                        Este proyecto nace como una{" "}
+                        VirtualShop es una{" "}
                         <span className="text-white font-semibold">
-                            plantilla de referencia
+                            plataforma de comercio electrónico moderna
                         </span>{" "}
-                        para entender cómo estructurar una aplicación
-                        Next.js moderna desde cero. Cubre los patrones
-                        más comunes en proyectos reales:
-                        autenticación, autorización por roles,
-                        protección de rutas, manejo de sesión y
-                        organización del código.
+                        que demuestra cómo construir una tienda en
+                        línea completa con Next.js. Cubre los patrones
+                        esenciales: catálogo de productos, carrito de
+                        compras, autenticación de clientes, órdenes de
+                        pedido y panel administrativo.
                     </p>
                     <p className="text-zinc-500 text-sm leading-relaxed mt-3">
-                        No es una plantilla para copiar y pegar — es
-                        una arquitectura para entender, modificar y
-                        escalar.
+                        Está diseñada para ser escalable y mantenible,
+                        mostrando las mejores prácticas en
+                        arquitectura full-stack moderna.
                     </p>
                 </div>
             </section>
@@ -231,12 +233,12 @@ export default function AboutPage() {
             {/* Footer del about */}
             <div className="border-t border-zinc-800 pt-8 flex items-center justify-between">
                 <span className="text-xs font-mono text-zinc-700">
-                    JEBC-DeV · {new Date().getFullYear()}
+                    VirtualShop · {new Date().getFullYear()}
                 </span>
                 <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     <span className="text-xs font-mono text-zinc-600">
-                        Sistema activo
+                        Tienda activa
                     </span>
                 </div>
             </div>

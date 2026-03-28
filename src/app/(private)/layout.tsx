@@ -6,9 +6,9 @@ import { PrivateHeader } from "@/components/private/PrivateHeader";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Panel Privado"),
+        title: generateTitle("Panel de Usuario"),
         description:
-            "Área restringida con rutas protegidas por autenticación",
+            "Accede a tu panel de usuario para gestionar tu perfil, historial de pedidos y favoritos",
     };
 }
 

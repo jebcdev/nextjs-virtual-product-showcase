@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
         title: generateTitle("Mi Perfil"),
         description: generateDescription(
-            "Visualiza y administra tu perfil de usuario",
+            "Visualiza y administra tu perfil de cliente, datos personales y preferencias de compra",
         ),
     };
 }
@@ -17,10 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ProfilePage() {
     const { currentUser } = await getSessionDetails();
     return (
-        <>
-            <main>
-                <UserProfile user={currentUser!} />
-            </main>
-        </>
+        <div className="space-y-6 p-6">
+            <div>
+                <h1 className="text-3xl font-bold">Mi Perfil</h1>
+                <p className="text-muted-foreground">
+                    Administra tu información personal y preferencias
+                </p>
+            </div>
+            <UserProfile user={currentUser!} />
+        </div>
     );
 }

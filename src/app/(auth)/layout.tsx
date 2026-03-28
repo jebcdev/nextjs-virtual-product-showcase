@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Acceso"),
+        title: generateTitle("Acceso a Vitrina"),
         description:
-            "Inicia sesión o crea una nueva cuenta en JEBC-DeV",
+            "Inicia sesión o crea una cuenta para acceder a tu carrito de compras y historial de pedidos",
     };
 }
 
@@ -46,8 +46,8 @@ export default async function AuthLayout({
                 >
                     <div className="w-2 h-2 rounded-full bg-emerald-400 group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all" />
                     <span className="text-sm font-black text-white tracking-tight">
-                        JEBC
-                        <span className="text-emerald-400">-DeV</span>
+                        Virtual
+                        <span className="text-emerald-400">Shop</span>
                     </span>
                 </Link>
                 <span className="text-xs text-zinc-700 font-mono tracking-widest">
