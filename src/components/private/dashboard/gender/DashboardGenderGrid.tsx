@@ -6,12 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { DashboardGenderCard } from "./DashboardGenderCard";
 import { useGendersQuery } from "@/queries/dashboard/genders/useGenderQuery";
-import { Loading } from "@/app/loading";
+import Loading from "@/app/loading";
 import { notFound } from "next/navigation";
 export const DashboardGendersGrid = () => {
     const [query, setQuery] = useState("");
 
     const genders = useGendersQuery();
+
+      if (genders.isLoading || genders.isFetching)
+        return Loading({ message: "Cargando géneros..." });
+
+    if (genders.isError) return notFound();
 
     const filtered = genders.data!.filter((gender) => {
         const q = query.toLowerCase().trim();
@@ -24,10 +29,7 @@ export const DashboardGendersGrid = () => {
         );
     });
 
-    if (genders.isLoading || genders.isFetching)
-        return Loading({ message: "Cargando géneros..." });
-
-    if (genders.isError) return notFound();
+  
 
     return (
         <div className="flex flex-col gap-6">

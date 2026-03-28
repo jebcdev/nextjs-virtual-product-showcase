@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export const seedGenders = async () => {
+export const seedInitialGenders = async () => {
     try {
         const genders = await prisma.gender.createMany({
             data: [
