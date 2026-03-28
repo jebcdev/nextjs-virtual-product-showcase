@@ -8,6 +8,7 @@ import {
     ChevronLeft,
     Menu,
     LogOut,
+    LayoutGrid,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +34,11 @@ const navItems = [
         href: "/dashboard/genders",
         icon: Venus,
     },
+    {
+        label: "Categorías",
+        href: "/dashboard/categories",
+        icon: LayoutGrid,
+    },
 ];
 
 export const DashboardSideBar = () => {
@@ -46,7 +52,8 @@ export const DashboardSideBar = () => {
             fetchOptions: {
                 onSuccess: () => {
                     toast.info("Sesión cerrada", {
-                        description: "Has cerrado sesión correctamente.",
+                        description:
+                            "Has cerrado sesión correctamente.",
                         action: {
                             label: "Entendido",
                             onClick: () => toast.dismiss(),
@@ -77,15 +84,22 @@ export const DashboardSideBar = () => {
                 )}
             >
                 {!collapsed && (
-                    <Link href="/" className="flex items-center gap-2 group">
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 group"
+                    >
                         <div className="w-2 h-2 rounded-full bg-emerald-400 group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all shrink-0" />
                         <span
                             className="text-sm font-black text-white tracking-tight"
                             style={{
-                                fontFamily: "'DM Serif Display', Georgia, serif",
+                                fontFamily:
+                                    "'DM Serif Display', Georgia, serif",
                             }}
                         >
-                            JEBC<span className="text-emerald-400">-DeV</span>
+                            JEBC
+                            <span className="text-emerald-400">
+                                -DeV
+                            </span>
                         </span>
                     </Link>
                 )}
@@ -110,29 +124,39 @@ export const DashboardSideBar = () => {
                     {navItems.map(({ label, href, icon: Icon }) => {
                         const isActive = pathname === href;
                         return (
-                            <Tooltip key={label} disableHoverableContent={!collapsed}>
+                            <Tooltip
+                                key={label}
+                                disableHoverableContent={!collapsed}
+                            >
                                 <TooltipTrigger asChild>
                                     <Link
                                         href={href}
-                                        onClick={() => setMobileOpen(false)}
+                                        onClick={() =>
+                                            setMobileOpen(false)
+                                        }
                                         className={cn(
                                             "flex items-center gap-3 px-3 py-2 rounded-sm text-xs font-mono tracking-widest uppercase transition-all group",
                                             isActive
                                                 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
                                                 : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/60 border border-transparent",
-                                            collapsed && "justify-center px-2",
+                                            collapsed &&
+                                                "justify-center px-2",
                                         )}
                                     >
                                         <Icon
                                             className={cn(
                                                 "shrink-0 transition-colors",
-                                                collapsed ? "w-5 h-5" : "w-4 h-4",
+                                                collapsed
+                                                    ? "w-5 h-5"
+                                                    : "w-4 h-4",
                                                 isActive
                                                     ? "text-emerald-400"
                                                     : "text-zinc-600 group-hover:text-zinc-300",
                                             )}
                                         />
-                                        {!collapsed && <span>{label}</span>}
+                                        {!collapsed && (
+                                            <span>{label}</span>
+                                        )}
                                     </Link>
                                 </TooltipTrigger>
                                 {collapsed && (
@@ -160,16 +184,21 @@ export const DashboardSideBar = () => {
                                 className={cn(
                                     "w-full flex items-center gap-3 px-3 py-2 rounded-sm text-xs font-mono tracking-widest uppercase transition-all border border-transparent",
                                     "text-red-500/70 hover:text-red-400 hover:bg-red-500/10 hover:border-red-500/20",
-                                    collapsed && "justify-center px-2",
+                                    collapsed &&
+                                        "justify-center px-2",
                                 )}
                             >
                                 <LogOut
                                     className={cn(
                                         "shrink-0",
-                                        collapsed ? "w-5 h-5" : "w-4 h-4",
+                                        collapsed
+                                            ? "w-5 h-5"
+                                            : "w-4 h-4",
                                     )}
                                 />
-                                {!collapsed && <span>Cerrar sesión</span>}
+                                {!collapsed && (
+                                    <span>Cerrar sesión</span>
+                                )}
                             </button>
                         </TooltipTrigger>
                         {collapsed && (
@@ -210,7 +239,9 @@ export const DashboardSideBar = () => {
             <aside
                 className={cn(
                     "fixed inset-y-0 left-0 z-50 w-60 bg-black border-r border-zinc-800 md:hidden transition-transform duration-300",
-                    mobileOpen ? "translate-x-0" : "-translate-x-full",
+                    mobileOpen
+                        ? "translate-x-0"
+                        : "-translate-x-full",
                 )}
             >
                 <SidebarContent />

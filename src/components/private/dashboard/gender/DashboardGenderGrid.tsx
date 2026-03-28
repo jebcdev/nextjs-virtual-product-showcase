@@ -32,7 +32,7 @@ export const DashboardGendersGrid = () => {
   
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-2">
             {/* Search */}
             <div className="relative w-full max-w-sm">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />

@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function GendersPage() {
+export default async function DashbaordGendersPage() {
     
     return (
         <>
