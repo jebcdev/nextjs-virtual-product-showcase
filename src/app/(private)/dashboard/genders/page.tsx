@@ -6,6 +6,8 @@ import {
 import { DashboardHeader } from "@/components/private/dashboard/DashboardHeader";
 import { Plus } from "lucide-react";
 import { getDashboardGenders } from "@/actions/dashboard/genders/genders";
+import { notFound } from "next/navigation";
+import { DashboardGendersGrid } from "@/components/private/dashboard/gender/DashboardGenderGrid";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -17,7 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function GendersPage() {
-    const { data: genders } = await getDashboardGenders();
+    const { data: genders, success } = await getDashboardGenders();
+    if (!success) notFound();
 
     return (
         <>
@@ -31,7 +34,7 @@ export default async function GendersPage() {
                         icon: Plus,
                     }}
                 />
-                {JSON.stringify(genders, null, 2)}
+                <DashboardGendersGrid genders={genders ?? []} />
             </div>
         </>
     );
