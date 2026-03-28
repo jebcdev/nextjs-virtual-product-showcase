@@ -1,21 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { Gender } from "@/generated/prisma/client";
-DashboardGenderCard
-import { deleteDashboardGenderById } from "@/actions/dashboard/genders/genders";
+import { Suspense, useState } from "react";
+
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { DashboardGenderCard } from "./DashboardGenderCard";
-
-interface DashboardGendersGridProps {
-    genders: Gender[];
-}
-
-export const DashboardGendersGrid = ({ genders }: DashboardGendersGridProps) => {
+import { useGendersQuery } from "@/queries/dashboard/genders/useGenderQuery";
+import { Loading } from "@/app/loading";
+import { notFound } from "next/navigation";
+export const DashboardGendersGrid = () => {
     const [query, setQuery] = useState("");
 
-    const filtered = genders.filter((gender) => {
+    const genders = useGendersQuery();
+
+    const filtered = genders.data!.filter((gender) => {
         const q = query.toLowerCase().trim();
         if (!q) return true;
         return (
@@ -25,6 +23,11 @@ export const DashboardGendersGrid = ({ genders }: DashboardGendersGridProps) => 
             (gender.description ?? "").toLowerCase().includes(q)
         );
     });
+
+    if (genders.isLoading || genders.isFetching)
+        return Loading({ message: "Cargando géneros..." });
+
+    if (genders.isError) return notFound();
 
     return (
         <div className="flex flex-col gap-6">
@@ -43,22 +46,28 @@ export const DashboardGendersGrid = ({ genders }: DashboardGendersGridProps) => 
             {filtered.length === 0 && (
                 <div className="flex flex-col items-center justify-center py-16 gap-2 text-zinc-600 font-mono text-xs tracking-widest uppercase">
                     <Search className="w-8 h-8 opacity-30" />
-                    <span>Sin resultados para &quot;{query}&quot;</span>
+                    <span>
+                        Sin resultados para &quot;{query}&quot;
+                    </span>
                 </div>
             )}
 
             {/* Grid */}
-            {filtered.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    {filtered.map((gender) => (
-                        <DashboardGenderCard
-                            key={gender.id}
-                            gender={gender}
-                            editHref={`/dashboard/genders/${gender.id}/edit`}
-                        />
-                    ))}
-                </div>
-            )}
+            <Suspense
+                fallback={<Loading message="Cargando géneros..." />}
+            >
+                {filtered.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        {filtered.map((gender) => (
+                            <DashboardGenderCard
+                                key={gender.id}
+                                gender={gender}
+                                editHref={`/dashboard/genders/${gender.id}/edit`}
+                            />
+                        ))}
+                    </div>
+                )}
+            </Suspense>
         </div>
     );
 };

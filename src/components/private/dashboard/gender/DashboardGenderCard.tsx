@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Gender } from "@/generated/prisma/client";
-import { deleteDashboardGenderById } from "@/actions/dashboard/genders/genders";
 
 
 interface DashboardEntityCardProps {
@@ -50,32 +49,7 @@ export const DashboardGenderCard = ({
                 /{slug}
             </p>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 mt-auto pt-2 border-t border-zinc-800">
-                <Button
-                    asChild
-                    size="sm"
-                    variant="ghost"
-                    className="flex-1 h-7 text-[11px] font-mono tracking-widest uppercase text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-sm gap-1.5"
-                >
-                    <Link href={editHref}>
-                        <Pencil className="w-3 h-3" />
-                        Editar
-                    </Link>
-                </Button>
 
-                
-                    <Button
-                        className="w-full h-7 text-[11px] font-mono tracking-widest uppercase text-red-500/70 hover:text-red-400 hover:bg-red-500/10 rounded-sm gap-1.5"
-                        size="sm"
-                        variant="ghost"
-                        onClick={async () =>await deleteDashboardGenderById(id)}
-                    >
-                        <Trash2 className="w-3 h-3" />
-                        Eliminar
-                    </Button>
-                
-            </div>
         </div>
     );
 };

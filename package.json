@@ -16,6 +16,8 @@
         "@prisma/adapter-better-sqlite3": "^7.5.0",
         "@prisma/client": "^7.6.0",
         "@tabler/icons-react": "^3.41.0",
+        "@tanstack/react-query": "^5.95.2",
+        "@tanstack/react-query-devtools": "^5.95.2",
         "better-auth": "^1.5.6",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -35,6 +37,7 @@
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4",
+        "@tanstack/eslint-plugin-query": "^5.95.2",
         "@types/better-sqlite3": "^7.6.13",
         "@types/node": "^20.19.37",
         "@types/react": "^19",

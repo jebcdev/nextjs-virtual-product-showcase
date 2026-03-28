@@ -19,22 +19,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function GendersPage() {
-    const { data: genders, success } = await getDashboardGenders();
-    if (!success) notFound();
-
+    
     return (
         <>
             <div className="dashboard-page-container">
                 <DashboardHeader
                     title="Géneros"
                     subtitle="Gestiona los géneros de la vitrina"
-                    action={{
-                        label: "Nuevo género",
-                        href: "/dashboard/genders/new",
-                        icon: Plus,
-                    }}
                 />
-                <DashboardGendersGrid genders={genders ?? []} />
+                <DashboardGendersGrid  />
             </div>
         </>
     );

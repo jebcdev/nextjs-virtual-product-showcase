@@ -7,6 +7,7 @@ import {
 import { Merriweather, Geist_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import TanStackQueryProvider from "@/components/providers/TanStackQueryProvider";
 
 const geistMono = Geist_Mono({
     subsets: ["latin"],
@@ -45,7 +46,7 @@ export default function RootLayout({
             )}
         >
             <body className="min-h-full flex flex-col">
-                {children}
+                <TanStackQueryProvider>{children}</TanStackQueryProvider>
                 <Toaster
                     duration={2000}
                     position="top-right"
