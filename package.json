@@ -3,8 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "rm -rf .next && next dev",
-        "build": "rm -rf .next && next build",
+        "postinstall": "prisma generate",
+        "dev": "next dev",
+        "build": "prisma generate && next build",
         "start": "next start",
         "lint": "eslint",
         "seed": "curl -X POST http://localhost:3000/api/seed -H 'Content-Type: application/json'"
