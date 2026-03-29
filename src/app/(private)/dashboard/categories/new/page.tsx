@@ -11,9 +11,9 @@ import { Suspense } from "react";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Dashboard Categories"),
+        title: generateTitle("Crear Categoría"),
         description: generateDescription(
-            "Administra las categorías de productos disponibles en tu tienda",
+            "Crea una nueva categoría para organizar tus productos",
         ),
     };
 }

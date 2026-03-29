@@ -1,3 +1,5 @@
+"use client";
+
 import { Category } from "@/generated/prisma/client";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +7,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { toggleDashboardCategoryById } from "@/actions/dashboard/categories/categories";
+import { useTransition } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface IProps {
     category: Category;
@@ -12,6 +18,34 @@ interface IProps {
 
 export const DashboardCategoryCard = ({ category }: IProps) => {
     const { id, name, slug, description, image, isActive } = category;
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
+
+    const handleToggle = () => {
+        startTransition(async () => {
+            const response = await toggleDashboardCategoryById(id);
+
+            if (!response.success) {
+                toast.error("Error al cambiar estado", {
+                    description: response.message,
+                    action: {
+                        label: "Entendido",
+                        onClick: () => toast.dismiss(),
+                    },
+                });
+                return;
+            }
+
+            toast.success(response.message, {
+                action: {
+                    label: "Entendido",
+                    onClick: () => toast.dismiss(),
+                },
+            });
+
+            router.refresh();
+        });
+    };
 
     return (
         <div className="group relative flex flex-col bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden hover:border-zinc-600 transition-all duration-300">
@@ -57,7 +91,9 @@ export const DashboardCategoryCard = ({ category }: IProps) => {
                         variant="ghost"
                         className="h-8 w-8 bg-zinc-900/80 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-sm"
                     >
-                        <Link href={`/dashboard/categories/${slug}`}>
+                        <Link
+                            href={`/dashboard/categories/${slug}/view`}
+                        >
                             <Eye className="w-3.5 h-3.5" />
                         </Link>
                     </Button>
@@ -76,9 +112,11 @@ export const DashboardCategoryCard = ({ category }: IProps) => {
                     </Button>
 
                     <Button
+                        onClick={handleToggle}
+                        disabled={isPending}
                         size="icon"
                         variant="ghost"
-                        className="h-8 w-8 bg-zinc-900/80 border border-red-900/40 text-red-500/70 hover:text-red-400 hover:bg-red-500/10 rounded-sm"
+                        className="h-8 w-8 bg-zinc-900/80 border border-red-900/40 text-red-500/70 hover:text-red-400 hover:bg-red-500/10 rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <Trash2 className="w-3.5 h-3.5" />
                     </Button>

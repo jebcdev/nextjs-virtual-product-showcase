@@ -13,7 +13,7 @@ import { Suspense } from "react";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Dashboard Categories"),
+        title: generateTitle("Gestión de Categorías"),
         description: generateDescription(
             "Administra las categorías de productos disponibles en tu tienda",
         ),
