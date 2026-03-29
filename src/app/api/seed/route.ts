@@ -2,6 +2,7 @@
 import { seedInitialUsers } from "@/actions/auth";
 import { seedInitialCategories } from "@/actions/dashboard/categories/seed-categories";
 import { seedInitialGenders } from "@/actions/dashboard/genders/seed-genders";
+import { seedAllProductsRelated } from "@/actions/dashboard/products/seed-products";
 import { NextResponse } from "next/server";
 
 export async function POST() {
@@ -9,11 +10,13 @@ export async function POST() {
         const users = await seedInitialUsers();
         console.log({ users });
 
-        const genders = await seedInitialGenders();
+        /* const genders = await seedInitialGenders();
         console.log({ genders });
 
         const categories = await seedInitialCategories();
-        console.log({ categories });
+        console.log({ categories }); */
+
+        seedAllProductsRelated();
 
         return NextResponse.json(
             { success: true, data: "Seeder ejecutado correctamente" },
