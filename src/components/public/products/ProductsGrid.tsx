@@ -6,13 +6,61 @@ import Loading from "@/app/loading";
 import { useState } from "react";
 import { PublicProductCard } from "./ProductCard";
 import { usePublicProductsQuery } from "@/queries/public/useProductsWithRelationsQuery";
+import { usePublicProductsByGenderQuery } from "@/queries/public/useProductsByGenderQuery";
+import { usePublicProductsByCategoryQuery } from "@/queries/public/useProductsByCategoryQuery";
 import { notFound } from "next/navigation";
 
-export const PublicProductsGrid = () => {
-    const [query, setQuery] = useState("");
-    const productsQuery = usePublicProductsQuery();
+type TSearchCriteria = "gender" | "category" | "all";
 
-    const filtered = productsQuery.data?.filter((product) => {
+interface IProps {
+    searchCriteria?: TSearchCriteria;
+    slug?: string;
+}
+
+export const PublicProductsGrid = ({
+    searchCriteria = "all",
+    slug,
+}: IProps) => {
+    const [query, setQuery] = useState("");
+
+    // Only call the query that's needed
+    const allProductsQuery =
+        searchCriteria === "all"
+            ? usePublicProductsQuery()
+            : {
+                  data: undefined,
+                  isLoading: false,
+                  isFetching: false,
+                  isError: false,
+              };
+    const genderProductsQuery =
+        searchCriteria === "gender"
+            ? usePublicProductsByGenderQuery(slug || "")
+            : {
+                  data: undefined,
+                  isLoading: false,
+                  isFetching: false,
+                  isError: false,
+              };
+    const categoryProductsQuery =
+        searchCriteria === "category"
+            ? usePublicProductsByCategoryQuery(slug || "")
+            : {
+                  data: undefined,
+                  isLoading: false,
+                  isFetching: false,
+                  isError: false,
+              };
+
+    // Determine which query to use
+    const activeQuery =
+        searchCriteria === "gender"
+            ? genderProductsQuery
+            : searchCriteria === "category"
+              ? categoryProductsQuery
+              : allProductsQuery;
+
+    const filtered = activeQuery.data?.filter((product) => {
         const q = query.toLowerCase().trim();
         if (!q) return true;
 
@@ -38,13 +86,12 @@ export const PublicProductsGrid = () => {
         );
     });
 
-    if (productsQuery.isLoading || productsQuery.isFetching)
+    if (activeQuery.isLoading || activeQuery.isFetching)
         return <Loading message="Cargando productos..." />;
-    if (productsQuery.isError) return notFound();
+    if (activeQuery.isError) return notFound();
 
     return (
         <div className="flex flex-col gap-6 w-full">
-
             {/* Search — full width */}
             <div className="w-full flex flex-col gap-2">
                 <div className="relative w-full">
@@ -68,16 +115,21 @@ export const PublicProductsGrid = () => {
                 {/* Search hints */}
                 <div className="flex items-center gap-2 flex-wrap">
                     <SlidersHorizontal className="w-3 h-3 text-zinc-700 shrink-0" />
-                    {["nombre", "categoría", "género", "descripción", "precio", "stock"].map(
-                        (hint) => (
-                            <span
-                                key={hint}
-                                className="text-[10px] font-mono text-zinc-700 tracking-widest uppercase border border-zinc-800 rounded-sm px-1.5 py-0.5"
-                            >
-                                {hint}
-                            </span>
-                        ),
-                    )}
+                    {[
+                        "nombre",
+                        "categoría",
+                        "género",
+                        "descripción",
+                        "precio",
+                        "stock",
+                    ].map((hint) => (
+                        <span
+                            key={hint}
+                            className="text-[10px] font-mono text-zinc-700 tracking-widest uppercase border border-zinc-800 rounded-sm px-1.5 py-0.5"
+                        >
+                            {hint}
+                        </span>
+                    ))}
                 </div>
 
                 {/* Results count */}

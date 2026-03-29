@@ -2,13 +2,15 @@ import {
     generateDescription,
     generateTitle,
 } from "@/lib/layout-metadata";
+import { PublicProductsGrid } from "@/components/public/products/ProductsGrid";
 import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: IProps): Promise<Metadata> {
+    const { slug } = await params;
     return {
-        title: generateTitle("Productos por Categoría"),
+        title: generateTitle(`Productos - ${slug}`),
         description: generateDescription(
-            "Explora nuestra amplia gama de productos organizados por categorías para encontrar exactamente lo que necesitas",
+            `Explora nuestros productos para ${slug}`
         ),
     };
 }
@@ -22,10 +24,9 @@ export default async function PublicProductByCategoryPage(
 ) {
     const { slug } = await params;
     return (
-        <>
-            <main>
-                <h1>{slug}</h1>
-            </main>
-        </>
+        <main className="container mx-auto py-10">
+            <h1 className="text-3xl font-bold mb-10 capitalize">{slug}</h1>
+            <PublicProductsGrid searchCriteria="category" slug={slug} />
+        </main>
     );
 }

@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 export const seedInitialGenders = async () => {
     try {
+        await prisma.gender.deleteMany({});
         const genders = await prisma.gender.createMany({
             data: [
                 {

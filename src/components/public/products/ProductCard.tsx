@@ -13,8 +13,17 @@ interface IProps {
 }
 
 export const PublicProductCard = ({ product }: IProps) => {
-    const { id, name, slug, price, stock, images, isFeatured } =
-        product;
+    const {
+        id,
+        name,
+        slug,
+        price,
+        stock,
+        images,
+        isFeatured,
+        categories,
+        genders,
+    } = product;
 
     const parsedImages: string[] = JSON.parse(images || "[]");
     const cover = parsedImages[0] ?? null;
@@ -60,7 +69,7 @@ export const PublicProductCard = ({ product }: IProps) => {
                         variant="ghost"
                         className="h-8 w-8 bg-zinc-900/80 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-sm"
                     >
-                        <Link href={`/dashboard/products/${slug}`}>
+                        <Link href={`/product/${slug}`}>
                             <Eye className="w-3.5 h-3.5" />
                         </Link>
                     </Button>
@@ -82,6 +91,39 @@ export const PublicProductCard = ({ product }: IProps) => {
                 <p className="text-[11px] font-mono text-zinc-600 tracking-widest">
                     /{slug}
                 </p>
+
+                {/* Categorías */}
+                {categories.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                        {categories.slice(0, 2).map((cat) => (
+                            <Badge
+                                key={cat.id}
+                                className="text-[9px] font-mono tracking-widest uppercase rounded-sm px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            >
+                                {cat.name}
+                            </Badge>
+                        ))}
+                        {categories.length > 2 && (
+                            <span className="text-[9px] text-zinc-600">
+                                +{categories.length - 2}
+                            </span>
+                        )}
+                    </div>
+                )}
+
+                {/* Géneros */}
+                {genders && genders.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                        {genders.map((gen) => (
+                            <Badge
+                                key={gen.id}
+                                className="text-[9px] font-mono tracking-widest uppercase rounded-sm px-1.5 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold"
+                            >
+                                {gen.name}
+                            </Badge>
+                        ))}
+                    </div>
+                )}
 
                 {/* Price + stock */}
                 <div className="flex items-center justify-between pt-2 border-t border-zinc-800">

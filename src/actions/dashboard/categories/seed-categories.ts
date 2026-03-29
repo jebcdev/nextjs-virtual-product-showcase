@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 export const seedInitialCategories = async () => {
     try {
+        await prisma.category.deleteMany({});
         const categories = await prisma.category.createMany({
             data: [
                 {
@@ -41,7 +42,6 @@ export const seedInitialCategories = async () => {
                     image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400",
                 },
             ],
-  
         });
 
         return {

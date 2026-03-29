@@ -8,7 +8,7 @@ interface IProps {
     product: Product & { categories: Category[]; genders: Gender[] };
 }
 
-export const DashboardProductDetails = ({ product }: IProps) => {
+export const PublicProductDetails = ({ product }: IProps) => {
     const {
         name,
         slug,
@@ -16,12 +16,9 @@ export const DashboardProductDetails = ({ product }: IProps) => {
         price,
         stock,
         images,
-        isActive,
         isFeatured,
         categories,
         genders,
-        createdAt,
-        updatedAt,
     } = product;
 
     const parsedImages: string[] = JSON.parse(images || "[]");
@@ -77,16 +74,6 @@ export const DashboardProductDetails = ({ product }: IProps) => {
                             Destacado
                         </Badge>
                     )}
-                    <Badge
-                        className={cn(
-                            "text-[11px] font-mono tracking-widest uppercase rounded-sm px-2 py-0.5 border",
-                            isActive
-                                ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                                : "bg-zinc-800 text-zinc-500 border-zinc-700",
-                        )}
-                    >
-                        {isActive ? "Activo" : "Inactivo"}
-                    </Badge>
                 </div>
 
                 {/* Categorías */}
@@ -99,7 +86,7 @@ export const DashboardProductDetails = ({ product }: IProps) => {
                             {categories.map((cat) => (
                                 <Badge
                                     key={cat.id}
-                                    className="text-[10px] font-mono tracking-widest uppercase rounded-sm px-2 py-0.5 bg-zinc-800 text-zinc-300 border border-zinc-700"
+                                    className="text-[10px] font-mono tracking-widest uppercase rounded-sm px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
                                 >
                                     {cat.name}
                                 </Badge>
@@ -118,7 +105,7 @@ export const DashboardProductDetails = ({ product }: IProps) => {
                             {genders.map((gen) => (
                                 <Badge
                                     key={gen.id}
-                                    className="text-[10px] font-mono tracking-widest uppercase rounded-sm px-2 py-0.5 bg-zinc-800 text-zinc-300 border border-zinc-700"
+                                    className="text-[10px] font-mono tracking-widest uppercase rounded-sm px-2 py-0.5 bg-blue-500/10 text-blue-400 border border-blue-500/20"
                                 >
                                     {gen.name}
                                 </Badge>
@@ -126,25 +113,6 @@ export const DashboardProductDetails = ({ product }: IProps) => {
                         </div>
                     </div>
                 )}
-
-                <Field
-                    label="Creado"
-                    value={createdAt.toLocaleDateString("es-CO", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                    })}
-                    mono
-                />
-                <Field
-                    label="Actualizado"
-                    value={updatedAt.toLocaleDateString("es-CO", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                    })}
-                    mono
-                />
             </div>
         </div>
     );

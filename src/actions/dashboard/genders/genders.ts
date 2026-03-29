@@ -8,6 +8,7 @@ export const getDashboardGenders = async (): Promise<
     IGeneralResponse<Gender[]>
 > => {
     try {
+        
         const genders = await prisma.gender.findMany();
         return {
             success: true,

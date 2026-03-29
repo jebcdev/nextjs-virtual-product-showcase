@@ -92,7 +92,10 @@ export const getPublicProductBySlug = async (
     slug: string,
 ): Promise<
     IGeneralResponse<
-        Product & { categories: Category[]; genders: Gender[] }
+        Product & {
+            categories: Category[];
+            genders: Gender[];
+        }
     >
 > => {
     try {
@@ -102,8 +105,16 @@ export const getPublicProductBySlug = async (
                 isActive: true,
             },
             include: {
-                categories: true,
-                genders: true,
+                categories: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+                genders: {
+                    where: {
+                        isActive: true,
+                    },
+                },
             },
         });
 
@@ -126,6 +137,130 @@ export const getPublicProductBySlug = async (
             success: false,
             error: true,
             message: "Error al obtener el producto",
+        };
+    }
+};
+
+export const getPublicProductsByGender = async (
+    genderSlug: string,
+): Promise<
+    IGeneralResponse<
+        (Product & {
+            categories: Category[];
+            genders: Gender[];
+        })[]
+    >
+> => {
+    try {
+        const products = await prisma.product.findMany({
+            where: {
+                isActive: true,
+                genders: {
+                    some: {
+                        slug: genderSlug,
+                        isActive: true,
+                    },
+                },
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+            include: {
+                categories: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+                genders: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+            },
+        });
+
+        if (products.length === 0)
+            return {
+                success: false,
+                error: true,
+                message:
+                    "No se encontraron productos para este género",
+            };
+
+        return {
+            success: true,
+            error: false,
+            message: "Productos obtenidos correctamente",
+            data: products,
+        };
+    } catch (error) {
+        console.error("Error fetching products by gender:", error);
+        return {
+            success: false,
+            error: true,
+            message: "Error al obtener los productos",
+        };
+    }
+};
+
+export const getPublicProductsByCategory = async (
+    categorySlug: string,
+): Promise<
+    IGeneralResponse<
+        (Product & {
+            categories: Category[];
+            genders: Gender[];
+        })[]
+    >
+> => {
+    try {
+        const products = await prisma.product.findMany({
+            where: {
+                isActive: true,
+                categories: {
+                    some: {
+                        slug: categorySlug,
+                        isActive: true,
+                    },
+                },
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+            include: {
+                categories: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+                genders: {
+                    where: {
+                        isActive: true,
+                    },
+                },
+            },
+        });
+
+        if (products.length === 0)
+            return {
+                success: false,
+                error: true,
+                message:
+                    "No se encontraron productos para esta categoría",
+            };
+
+        return {
+            success: true,
+            error: false,
+            message: "Productos obtenidos correctamente",
+            data: products,
+        };
+    } catch (error) {
+        console.error("Error fetching products by category:", error);
+        return {
+            success: false,
+            error: true,
+            message: "Error al obtener los productos",
         };
     }
 };

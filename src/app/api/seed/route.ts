@@ -10,13 +10,13 @@ export async function POST() {
         const users = await seedInitialUsers();
         console.log({ users });
 
-        /* const genders = await seedInitialGenders();
+        const genders = await seedInitialGenders();
         console.log({ genders });
 
         const categories = await seedInitialCategories();
-        console.log({ categories }); */
+        console.log({ categories });
 
-        seedAllProductsRelated();
+        await seedAllProductsRelated();
 
         return NextResponse.json(
             { success: true, data: "Seeder ejecutado correctamente" },

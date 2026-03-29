@@ -6,7 +6,8 @@
         "dev": "rm -rf .next && next dev",
         "build": "rm -rf .next && next build",
         "start": "next start",
-        "lint": "eslint"
+        "lint": "eslint",
+        "seed": "curl -X POST http://localhost:3000/api/seed -H 'Content-Type: application/json'"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.2.2",
