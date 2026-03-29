@@ -1,7 +1,6 @@
 import { getDashboardCategoryBySlug } from "@/actions/dashboard/categories/categories";
 import Loading from "@/app/loading";
 import notFound from "@/app/not-found";
-import { DashboardCategoryDetails } from "@/components/private/dashboard/categories/CategoryDetails";
 import { DashboardCategoryFormEdit } from "@/components/private/dashboard/categories/CategoryFormEdit";
 
 import { DashboardHeader } from "@/components/private/dashboard/Header";

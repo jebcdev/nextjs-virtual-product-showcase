@@ -82,7 +82,8 @@ export const createDashboardProduct = async (
                 message: "La información proporcionada no es válida",
             };
 
-        const { categoryIds, genderIds, images, ...rest } = validData.data;
+        const { categoryIds, genderIds, images, ...rest } =
+            validData.data;
 
         const newProduct = await prisma.product.create({
             data: {
@@ -121,7 +122,10 @@ export const updateDashboardProductById = async (
     product: TUpdateProductData,
 ): Promise<IGeneralResponse<Product>> => {
     try {
-        const validData = UpdateProductSchema.safeParse({ ...product,id });
+        const validData = UpdateProductSchema.safeParse({
+            ...product,
+            id,
+        });
         if (!validData.success)
             return {
                 success: false,
@@ -129,7 +133,13 @@ export const updateDashboardProductById = async (
                 message: "La información proporcionada no es válida",
             };
 
-        const { categoryIds, genderIds, images, id: _, ...rest } = validData.data;
+        const {
+            categoryIds,
+            genderIds,
+            images,
+            id: _,
+            ...rest
+        } = validData.data;
 
         const updatedProduct = await prisma.product.update({
             where: { id },
@@ -168,7 +178,7 @@ export const updateDashboardProductById = async (
     }
 };
 
-export const toggleDashboardProductById = async (
+export const toggleDashboardProductActiveById = async (
     id: string,
 ): Promise<IGeneralResponse<Product>> => {
     try {
@@ -202,6 +212,47 @@ export const toggleDashboardProductById = async (
             success: false,
             error: true,
             message: "Error al cambiar el estado del producto",
+        };
+    }
+};
+
+export const toggleDashboardProductFeaturedById = async (
+    id: string,
+): Promise<IGeneralResponse<Product>> => {
+    try {
+        const current = await prisma.product.findUnique({
+            where: { id },
+            select: { isFeatured: true },
+        });
+
+        if (!current)
+            return {
+                success: false,
+                error: true,
+                message: "Producto no encontrado",
+            };
+
+        const toggled = await prisma.product.update({
+            where: { id },
+            data: { isFeatured: !current.isFeatured },
+        });
+
+        return {
+            success: true,
+            message: toggled.isFeatured
+                ? "Producto destacado exitosamente"
+                : "Producto removido de destacados exitosamente",
+            data: toggled,
+        };
+    } catch (error) {
+        console.error(
+            "Error toggling dashboard product featured:",
+            error,
+        );
+        return {
+            success: false,
+            error: true,
+            message: "Error al cambiar el estado de destacado",
         };
     }
 };
