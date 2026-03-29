@@ -250,7 +250,7 @@ export const DashboardSideBar = () => {
                         : "-translate-x-full",
                 )}
             >
-                <SidebarContent />
+                {SidebarContent()}
             </aside>
 
             {/* Desktop sidebar */}
@@ -260,7 +260,7 @@ export const DashboardSideBar = () => {
                     collapsed ? "w-16" : "w-56",
                 )}
             >
-                <SidebarContent />
+                {SidebarContent()}
             </aside>
         </>
     );

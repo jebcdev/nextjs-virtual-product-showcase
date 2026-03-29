@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -28,7 +29,9 @@ const Field = ({
         <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
             {label}
         </span>
-        <span className="text-sm font-mono text-zinc-200">{value}</span>
+        <span className="text-sm font-mono text-zinc-200">
+            {value}
+        </span>
     </div>
 );
 
@@ -60,9 +63,11 @@ export const UserProfile = ({ user }: IProps) => {
                         <div className="relative shrink-0">
                             <div className="w-16 h-16 rounded-sm bg-zinc-800 border border-zinc-700 flex items-center justify-center">
                                 {user.image ? (
-                                    <img
+                                    <Image
                                         src={user.image}
                                         alt={user.name}
+                                        width={64}
+                                        height={64}
                                         className="w-full h-full object-cover rounded-sm"
                                     />
                                 ) : (
@@ -120,10 +125,18 @@ export const UserProfile = ({ user }: IProps) => {
 
                     {/* Grid de campos */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <Field label="ID de usuario" value={
-                            <span className="text-zinc-500 text-xs break-all">{user.id}</span>
-                        } />
-                        <Field label="Correo electrónico" value={user.email} />
+                        <Field
+                            label="ID de usuario"
+                            value={
+                                <span className="text-zinc-500 text-xs break-all">
+                                    {user.id}
+                                </span>
+                            }
+                        />
+                        <Field
+                            label="Correo electrónico"
+                            value={user.email}
+                        />
                         <Field
                             label="Verificación de correo"
                             value={
@@ -140,11 +153,20 @@ export const UserProfile = ({ user }: IProps) => {
                                 </span>
                             }
                         />
-                        <Field label="Rol en el sistema" value={
-                            <span className={isAdmin ? "text-emerald-400" : "text-zinc-300"}>
-                                {user.role ?? "USER"}
-                            </span>
-                        } />
+                        <Field
+                            label="Rol en el sistema"
+                            value={
+                                <span
+                                    className={
+                                        isAdmin
+                                            ? "text-emerald-400"
+                                            : "text-zinc-300"
+                                    }
+                                >
+                                    {user.role ?? "USER"}
+                                </span>
+                            }
+                        />
                         <Field
                             label="Miembro desde"
                             value={formatDate(user.createdAt)}
@@ -167,17 +189,31 @@ export const UserProfile = ({ user }: IProps) => {
                         </span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Field label="Imagen de perfil" value={
-                            user.image
-                                ? <span className="text-emerald-400">Configurada</span>
-                                : <span className="text-zinc-600">No configurada</span>
-                        } />
-                        <Field label="Estado" value={
-                            <span className="flex items-center gap-1.5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                                <span className="text-emerald-400">Activo</span>
-                            </span>
-                        } />
+                        <Field
+                            label="Imagen de perfil"
+                            value={
+                                user.image ? (
+                                    <span className="text-emerald-400">
+                                        Configurada
+                                    </span>
+                                ) : (
+                                    <span className="text-zinc-600">
+                                        No configurada
+                                    </span>
+                                )
+                            }
+                        />
+                        <Field
+                            label="Estado"
+                            value={
+                                <span className="flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                                    <span className="text-emerald-400">
+                                        Activo
+                                    </span>
+                                </span>
+                            }
+                        />
                     </div>
                 </CardContent>
             </Card>

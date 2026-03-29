@@ -28,7 +28,7 @@ export function RegisterForm() {
     });
 
     const onSubmit = async (data: TRegisterData) => {
-        const { error } = await authClient.signUp.email(
+        await authClient.signUp.email(
             {
                 email: data.email,
                 password: data.password,
@@ -54,9 +54,10 @@ export function RegisterForm() {
                     reset();
                     router.push("/");
                 },
-                onError: (ctx) => {
+                onError: () => {
                     toast.error("Error al crear la cuenta", {
-                        description: "Intenta nuevamente con otro correo o revisa tu conexión.",
+                        description:
+                            "Intenta nuevamente con otro correo o revisa tu conexión.",
                         action: {
                             label: "Entendido",
                             onClick: () => toast.dismiss(),

@@ -1,6 +1,7 @@
 "use server";
 
 import { Category } from "@/generated/prisma/client";
+import { consoleLogger } from "@/lib/console-logger";
 import { prisma } from "@/lib/prisma";
 import { IGeneralResponse } from "@/types/general-response";
 import {
@@ -56,6 +57,7 @@ export const getDashboardCategoryBySlug = async (
             data: category,
         };
     } catch (error) {
+        consoleLogger(error);
         return {
             success: false,
             error: true,

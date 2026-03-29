@@ -23,36 +23,16 @@ export const PublicProductsGrid = ({
 }: IProps) => {
     const [query, setQuery] = useState("");
 
-    // Only call the query that's needed
-    const allProductsQuery =
-        searchCriteria === "all"
-            ? usePublicProductsQuery()
-            : {
-                  data: undefined,
-                  isLoading: false,
-                  isFetching: false,
-                  isError: false,
-              };
-    const genderProductsQuery =
-        searchCriteria === "gender"
-            ? usePublicProductsByGenderQuery(slug || "")
-            : {
-                  data: undefined,
-                  isLoading: false,
-                  isFetching: false,
-                  isError: false,
-              };
-    const categoryProductsQuery =
-        searchCriteria === "category"
-            ? usePublicProductsByCategoryQuery(slug || "")
-            : {
-                  data: undefined,
-                  isLoading: false,
-                  isFetching: false,
-                  isError: false,
-              };
+    // ✅ Llamar TODOS los hooks siempre (no condicionalmente)
+    const allProductsQuery = usePublicProductsQuery();
+    const genderProductsQuery = usePublicProductsByGenderQuery(
+        slug || "",
+    );
+    const categoryProductsQuery = usePublicProductsByCategoryQuery(
+        slug || "",
+    );
 
-    // Determine which query to use
+    // Seleccionar cuál usar después
     const activeQuery =
         searchCriteria === "gender"
             ? genderProductsQuery

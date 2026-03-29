@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { Pencil, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Gender } from "@/generated/prisma/client";
 

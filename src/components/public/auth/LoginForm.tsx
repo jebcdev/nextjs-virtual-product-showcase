@@ -16,6 +16,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+
 export function LoginForm() {
     const router = useRouter();
     const {
@@ -54,7 +55,8 @@ export function LoginForm() {
                     reset();
                     router.push("/");
                 },
-                onError: (ctx) => {
+                onError: () => {
+                    
                     toast.error("Error al iniciar sesión", {
                         description: "Correo o contraseña incorrectos.",
                         action: {

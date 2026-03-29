@@ -26,7 +26,12 @@ export default async function DashboardProductsNewPage() {
     const categories = await getDashboardCategories();
     const genders = await getDashboardGenders();
 
+    if (!categories || !genders) return notFound();
     if (!categories.success || !genders.success) return notFound();
+
+    // ✅ Type guard explícito después de validaciones
+    const categoriesData = categories.data ?? [];
+    const gendersData = genders.data ?? [];
 
     return (
         <>
@@ -47,8 +52,8 @@ export default async function DashboardProductsNewPage() {
                     }
                 >
                     <DashboardProductFormNew
-                        categories={categories?.data!}
-                        genders={genders?.data!}
+                        categories={categoriesData}
+                        genders={gendersData}
                     />
                 </Suspense>
             </div>

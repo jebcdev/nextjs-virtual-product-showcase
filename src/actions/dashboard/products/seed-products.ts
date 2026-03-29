@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prisma";
 // HELPERS
 // ─────────────────────────────────────────────
 
-const pick = <T>(arr: T[]): T =>
-    arr[Math.floor(Math.random() * arr.length)];
+/* const pick = <T>(arr: T[]): T =>
+    arr[Math.floor(Math.random() * arr.length)]; */
 
 const fakeImages = (count = 2): string =>
     JSON.stringify(

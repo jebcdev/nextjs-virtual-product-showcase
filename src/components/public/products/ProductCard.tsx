@@ -14,7 +14,6 @@ interface IProps {
 
 export const PublicProductCard = ({ product }: IProps) => {
     const {
-        id,
         name,
         slug,
         price,

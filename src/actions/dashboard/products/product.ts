@@ -137,7 +137,6 @@ export const updateDashboardProductById = async (
             categoryIds,
             genderIds,
             images,
-            id: _,
             ...rest
         } = validData.data;
 
