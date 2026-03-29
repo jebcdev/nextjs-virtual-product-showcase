@@ -1,9 +1,8 @@
-
 import { getDashboardProducts } from "@/actions/dashboard/products/product";
 import Loading from "@/app/loading";
 import notFound from "@/app/not-found";
-import { DashboardCategoriesGrid } from "@/components/private/dashboard/categories/CategoriesGrid";
 import { DashboardHeader } from "@/components/private/dashboard/Header";
+import { DashboardProductsGrid } from "@/components/private/dashboard/products/ProductsGrid";
 import {
     generateDescription,
     generateTitle,
@@ -14,36 +13,36 @@ import { Suspense } from "react";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Gestión de Categorías"),
+        title: generateTitle("Gestión de Productos"),
         description: generateDescription(
-            "Administra las categorías de productos disponibles en tu tienda",
+            "Administra los productos disponibles en tu vitrina virtual",
         ),
     };
 }
 
-export default async function DashboardCategoriesPage() {
-    const categories = await getDashboardCategories();
-    if (!categories) notFound();
+export default async function DashboardProductsPage() {
+    const products = await getDashboardProducts();
+    if (!products.success) notFound();
 
     return (
         <>
             <div className="dashboard-page-container">
                 <DashboardHeader
-                    title="Categorías"
-                    subtitle="Gestiona las categorías de la vitrina"
+                    title="Productos"
+                    subtitle="Gestiona los productos de la vitrina"
                     action={{
-                        label: "Nueva Categoría",
-                        href: "/dashboard/categories/new",
+                        label: "Nuevo Producto",
+                        href: "/dashboard/products/new",
                         icon: Plus,
                     }}
                 />
                 <Suspense
                     fallback={
-                        <Loading message="Cargando Categorías" />
+                        <Loading message="Cargando Productos" />
                     }
                 >
-                    <DashboardCategoriesGrid
-                        categories={categories.data ?? []}
+                    <DashboardProductsGrid
+                        products={products.data ?? []}
                     />
                 </Suspense>
             </div>

@@ -9,6 +9,7 @@ import {
     Menu,
     LogOut,
     LayoutGrid,
+    Package,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,6 +39,11 @@ const navItems = [
         label: "Categorías",
         href: "/dashboard/categories",
         icon: LayoutGrid,
+    },
+    {
+        label: "Productos",
+        href: "/dashboard/products",
+        icon: Package,
     },
 ];
 
