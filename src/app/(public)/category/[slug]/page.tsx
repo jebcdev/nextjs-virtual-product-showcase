@@ -1,0 +1,31 @@
+import {
+    generateDescription,
+    generateTitle,
+} from "@/lib/layout-metadata";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: generateTitle("Productos por Categoría"),
+        description: generateDescription(
+            "Explora nuestra amplia gama de productos organizados por categorías para encontrar exactamente lo que necesitas",
+        ),
+    };
+}
+
+interface IProps {
+    params: Promise<{ slug: string }>;
+}
+
+export default async function PublicProductByCategoryPage(
+    { params }: IProps,
+) {
+    const { slug } = await params;
+    return (
+        <>
+            <main>
+                <h1>{slug}</h1>
+            </main>
+        </>
+    );
+}
