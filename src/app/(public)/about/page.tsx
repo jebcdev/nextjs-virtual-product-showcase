@@ -6,9 +6,9 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: generateTitle("Acerca de la Vitrina"),
+        title: generateTitle("Acerca de"),
         description: generateDescription(
-            "Conoce nuestra plataforma de venta de productos en línea, tecnología y valores",
+            "Vitrina virtual: catálogo de productos con autenticación segura y panel administrativo",
         ),
     };
 }
@@ -16,65 +16,61 @@ export async function generateMetadata(): Promise<Metadata> {
 const stack = [
     {
         name: "Next.js 16",
-        description:
-            "App Router, Server Components, layouts anidados",
+        description: "App Router, Server Components, Server Actions",
         tag: "framework",
     },
     {
         name: "Better Auth",
-        description:
-            "Autenticación moderna con soporte de sesiones y roles",
+        description: "Autenticación con roles (ADMIN, USER)",
         tag: "auth",
     },
     {
-        name: "Prisma + SQLite",
-        description: "ORM type-safe con adaptador better-sqlite3",
+        name: "Prisma ORM",
+        description: "Queries tipadas con SQLite para desarrollo",
         tag: "database",
     },
     {
+        name: "Zod",
+        description: "Validación de esquemas en cliente y servidor",
+        tag: "validation",
+    },
+    {
+        name: "React Hook Form",
+        description: "Gestión eficiente de formularios",
+        tag: "forms",
+    },
+    {
+        name: "TanStack Query",
+        description: "Sincronización de estado del servidor",
+        tag: "state",
+    },
+    {
         name: "Tailwind CSS v4",
-        description: "Utilidades CSS con design system coherente",
+        description: "Estilizado utility-first y responsivo",
         tag: "styles",
     },
     {
         name: "shadcn/ui",
-        description:
-            "Componentes accesibles construidos sobre Radix UI",
+        description: "Componentes accesibles sobre Radix UI",
         tag: "ui",
-    },
-    {
-        name: "React Hook Form",
-        description:
-            "Formularios con validación Zod sin re-renders innecesarios",
-        tag: "forms",
-    },
-    {
-        name: "TypeScript",
-        description: "Tipado estático en todo el proyecto",
-        tag: "language",
-    },
-    {
-        name: "Sonner",
-        description: "Toast notifications con estilo y control total",
-        tag: "ux",
     },
 ];
 
 const features = [
     {
         icon: "▸",
-        label: "Catálogo de productos con búsqueda y filtros",
+        label: "Catálogo público con búsqueda y filtros",
     },
-    { icon: "▸", label: "Carrito de compras persistente" },
-    { icon: "▸", label: "Gestión de inventario en tiempo real" },
-    { icon: "▸", label: "Sistema de pedidos y seguimiento" },
-    { icon: "▸", label: "Perfiles de usuario y favoritos" },
+    { icon: "▸", label: "Autenticación segura (email + password)" },
+    { icon: "▸", label: "Gestión de categorías y géneros" },
+    { icon: "▸", label: "Panel administrativo privado" },
+    { icon: "▸", label: "Perfiles de usuario con sesión" },
     {
         icon: "▸",
-        label: "Autenticación segura con mejora de contraseñas",
+        label: "Validaciones robustas con Zod",
     },
-    { icon: "▸", label: "Panel de administración de productos" },
-    { icon: "▸", label: "Optimización de imágenes y rendimiento" },
+    { icon: "▸", label: "UI moderna con dark theme" },
+    { icon: "▸", label: "Totalmente tipado con TypeScript" },
 ];
 
 const tagColors: Record<string, string> = {
@@ -82,11 +78,11 @@ const tagColors: Record<string, string> = {
         "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
     auth: "text-blue-400 border-blue-500/30 bg-blue-500/10",
     database: "text-orange-400 border-orange-500/30 bg-orange-500/10",
-    styles: "text-pink-400 border-pink-500/30 bg-pink-500/10",
-    ui: "text-purple-400 border-purple-500/30 bg-purple-500/10",
+    validation: "text-pink-400 border-pink-500/30 bg-pink-500/10",
     forms: "text-yellow-400 border-yellow-500/30 bg-yellow-500/10",
-    language: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
-    ux: "text-zinc-300 border-zinc-600 bg-zinc-800",
+    state: "text-purple-400 border-purple-500/30 bg-purple-500/10",
+    styles: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
+    ui: "text-violet-400 border-violet-500/30 bg-violet-500/10",
 };
 
 export default function AboutPage() {
@@ -97,7 +93,7 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-sm border border-zinc-800 bg-zinc-900/50">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-xs font-mono text-zinc-400 tracking-widest uppercase">
-                        Acerca de la vitrina
+                        Vitrina Virtual
                     </span>
                 </div>
 
@@ -113,26 +109,22 @@ export default function AboutPage() {
                 </h1>
 
                 <p className="text-zinc-400 text-base leading-relaxed max-w-xl mt-4">
-                    Plataforma moderna de comercio electrónico
-                    construida con Next.js, diseñada para ofrecer una
-                    experiencia de compra fluida, segura y escalable
-                    con gestión completa de productos e inventario.
+                    Vitrina de productos moderna construida con
+                    Next.js. Autenticación segura, gestión
+                    administrativa y catálogo público con búsqueda y
+                    filtros.
                 </p>
 
                 <div className="flex items-center gap-4 mt-6">
                     <div className="flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         <span className="text-xs font-mono text-zinc-500">
-                            v1.0.0
+                            v0.1.0
                         </span>
                     </div>
                     <div className="w-px h-3 bg-zinc-800" />
                     <span className="text-xs font-mono text-zinc-500">
-                        Vitrina Virtual · Full-Stack
-                    </span>
-                    <div className="w-px h-3 bg-zinc-800" />
-                    <span className="text-xs font-mono text-zinc-500">
-                        Next.js 16 + Prisma
+                        Next.js + Prisma
                     </span>
                 </div>
             </div>
@@ -142,7 +134,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-3 mb-5">
                     <div className="h-px flex-1 bg-zinc-800" />
                     <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
-                        Propósito
+                        ¿Qué es?
                     </span>
                     <div className="h-px flex-1 bg-zinc-800" />
                 </div>
@@ -151,18 +143,20 @@ export default function AboutPage() {
                     <p className="text-zinc-300 text-sm leading-relaxed">
                         VirtualShop es una{" "}
                         <span className="text-white font-semibold">
-                            plataforma de comercio electrónico moderna
-                        </span>{" "}
-                        que demuestra cómo construir una tienda en
-                        línea completa con Next.js. Cubre los patrones
-                        esenciales: catálogo de productos, carrito de
-                        compras, autenticación de clientes, órdenes de
-                        pedido y panel administrativo.
+                            vitrina de productos desarrollada con
+                            Next.js 16
+                        </span>
+                        . Incluye un catálogo público donde los
+                        usuarios pueden buscar productos por categoría
+                        o género, un sistema de autenticación seguro y
+                        un panel administrativo para gestionar
+                        productos, categorías y géneros.
                     </p>
                     <p className="text-zinc-500 text-sm leading-relaxed mt-3">
-                        Está diseñada para ser escalable y mantenible,
-                        mostrando las mejores prácticas en
-                        arquitectura full-stack moderna.
+                        Es una referencia de arquitectura full-stack
+                        moderna mostrando patrones con Next.js, Server
+                        Components, Server Actions, validación con Zod
+                        y gestión de estado con TanStack Query.
                     </p>
                 </div>
             </section>
@@ -238,7 +232,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     <span className="text-xs font-mono text-zinc-600">
-                        Tienda activa
+                        Vitrina activa
                     </span>
                 </div>
             </div>
