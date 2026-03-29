@@ -3,11 +3,9 @@ import {
     generateTitle,
     generateDescription,
 } from "@/lib/layout-metadata";
-import { DashboardHeader } from "@/components/private/dashboard/DashboardHeader";
-import { Plus } from "lucide-react";
-import { getDashboardGenders } from "@/actions/dashboard/genders/genders";
-import { notFound } from "next/navigation";
-import { DashboardGendersGrid } from "@/components/private/dashboard/gender/DashboardGenderGrid";
+import { DashboardHeader } from "@/components/private/dashboard/Header";
+
+import { DashboardGendersGrid } from "@/components/private/dashboard/gender/GenderGrid";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {

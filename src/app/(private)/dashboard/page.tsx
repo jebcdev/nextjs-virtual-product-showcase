@@ -24,7 +24,7 @@ export default async function DashboardPage() {
                     Gestiona el catálogo de productos y pedidos
                 </p>
             </div>
-            {/* Dashboard content */}
+            
         </div>
     );
 }

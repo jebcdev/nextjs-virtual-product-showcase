@@ -1,10 +1,11 @@
 import Loading from "@/app/loading";
-import { DashboardHeader } from "@/components/private/dashboard/DashboardHeader";
+import { DashboardCategoryFormNew } from "@/components/private/dashboard/categories/CategoryFormNew";
+import { DashboardHeader } from "@/components/private/dashboard/Header";
 import {
     generateDescription,
     generateTitle,
 } from "@/lib/layout-metadata";
-import { ArrowLeft, } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -29,12 +30,15 @@ export default async function DashboardCategoriesNewPage() {
                         href: "/dashboard/categories",
                         icon: ArrowLeft,
                     }}
+                    className="mb-2"
                 />
                 <Suspense
                     fallback={
                         <Loading message="Cargando Categorías" />
                     }
-                ></Suspense>
+                >
+                    <DashboardCategoryFormNew />
+                </Suspense>
             </div>
         </>
     );

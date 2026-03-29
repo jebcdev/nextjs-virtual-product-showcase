@@ -4,7 +4,7 @@ import { Suspense, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { DashboardGenderCard } from "./DashboardGenderCard";
+import { DashboardGenderCard } from "./GenderCard";
 import { useGendersQuery } from "@/queries/dashboard/genders/useGenderQuery";
 import Loading from "@/app/loading";
 import { notFound } from "next/navigation";

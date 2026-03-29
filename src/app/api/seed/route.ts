@@ -20,6 +20,7 @@ export async function POST() {
             { status: 201 },
         );
     } catch (error) {
+        console.error(error);
         return NextResponse.json(
             { success: false, error: "Error al ejecutar el seeder" },
             { status: 500 },

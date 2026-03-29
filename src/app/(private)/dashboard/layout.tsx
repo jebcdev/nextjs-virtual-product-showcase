@@ -5,7 +5,7 @@ import {
 } from "@/lib/layout-metadata";
 import { getSessionDetails } from "@/actions/auth/session-details";
 import { notFound, redirect } from "next/navigation";
-import { DashboardSideBar } from "@/components/private/dashboard/DashboardSideBar";
+import { DashboardSideBar } from "@/components/private/dashboard/SideBar";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {

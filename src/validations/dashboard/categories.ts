@@ -27,7 +27,7 @@ export const CreateCategorySchema = z.object({
         .url({ error: "Debe ser una URL válida" })
         .optional(),
 
-    isActive: z.boolean().default(true),
+    isActive: z.boolean({ error: "El estado es requerido" }),
 });
 
 export const UpdateCategorySchema = CreateCategorySchema.partial().extend({

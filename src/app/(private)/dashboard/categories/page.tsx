@@ -1,8 +1,8 @@
 import { getDashboardCategories } from "@/actions/dashboard/categories/categories";
 import Loading from "@/app/loading";
 import notFound from "@/app/not-found";
-import { DashbaordCategoriesGrid } from "@/components/private/dashboard/categories/DashbaordCategoriesGrid";
-import { DashboardHeader } from "@/components/private/dashboard/DashboardHeader";
+import { DashboardCategoriesGrid } from "@/components/private/dashboard/categories/CategoriesGrid";
+import { DashboardHeader } from "@/components/private/dashboard/Header";
 import {
     generateDescription,
     generateTitle,
@@ -41,7 +41,7 @@ export default async function DashboardCategoriesPage() {
                         <Loading message="Cargando Categorías" />
                     }
                 >
-                    <DashbaordCategoriesGrid
+                    <DashboardCategoriesGrid
                         categories={categories.data ?? []}
                     />
                 </Suspense>

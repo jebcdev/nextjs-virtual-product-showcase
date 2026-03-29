@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { generateTitle } from "@/lib/layout-metadata";
 import type { Metadata } from "next";
 

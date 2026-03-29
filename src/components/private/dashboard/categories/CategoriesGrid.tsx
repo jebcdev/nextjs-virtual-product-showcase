@@ -1,7 +1,7 @@
 "use client"
 
 import { Category } from "@/generated/prisma/client";
-import { DashboardCategoryCard } from "./DashboardCategoryCard";
+import { DashboardCategoryCard } from "./CategoryCard";
 
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -12,7 +12,7 @@ interface IProps {
     categories: Category[];
 }
 
-export const DashbaordCategoriesGrid = ({ categories }: IProps) => {
+export const DashboardCategoriesGrid = ({ categories }: IProps) => {
     const [query, setQuery] = useState("");
 
     const filtered = categories.filter((category) => {
